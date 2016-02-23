@@ -1,0 +1,173 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.xfxb</groupId>
+		<artifactId>tiramisu-parent</artifactId>
+		<version>1.0</version>
+	</parent>
+<<<<<<< HEAD
+	<artifactId>tiramisu-web</artifactId>
+	<packaging>war</packaging>
+	<name>tiramisu-web</name>
+=======
+	<artifactId>tiramisu-wx</artifactId>
+	<packaging>war</packaging>
+	<name>tiramisu-wx</name>
+>>>>>>> 6a3531831279f93b94e7cf976da2b99900c27de3
+	<description>the project for weixin of xfshop</description>
+
+	<properties>
+		<springmvc.version>4.2.2.RELEASE</springmvc.version>
+		<servlet.version>3.1.0</servlet.version>
+		<jstl.version>1.2</jstl.version>
+		<tomcat.version>2.2</tomcat.version>
+		<project-publish-name>/</project-publish-name>
+		<velocity.version>1.7</velocity.version>
+<<<<<<< HEAD
+		<finalName>tiramisu</finalName>
+=======
+		<finalName>xfshop</finalName>
+>>>>>>> 6a3531831279f93b94e7cf976da2b99900c27de3
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<env>dev</env>
+				<sdk-bc-version>2.0</sdk-bc-version>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+
+		<profile>
+			<id>test</id>
+			<properties>
+				<env>test</env>
+				<sdk-bc-version>2.0</sdk-bc-version>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>production</id>
+			<properties>
+				<env>production</env>
+				<sdk-bc-version>2.0</sdk-bc-version>
+			</properties>
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<!-- WEB begin -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${springmvc.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${springmvc.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${servlet.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- WEB end -->
+		
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>${velocity.version}</version>
+		</dependency>
+		
+		<!-- Test -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${springmvc.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>com.xfxb</groupId>
+			<artifactId>tiramisu-service</artifactId>
+			<version>1.0</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+	
+	<!-- 项目最后的打包和发布名称 -->
+		<finalName>${finalName}</finalName>
+		<!-- 对打包文件进行渲染,不要放进war里面，否则只有在打war的时候才生效 -->
+		<filters>
+			<filter>${basedir}/conf/${env}.properties</filter>
+		</filters>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		
+		<plugins>
+		<!-- maven-tomcat7插件 -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>${tomcat.version}</version>
+				<configuration>
+					<port>8080</port>
+					<!-- optional system propoerties you want to add -->
+					<systemProperties></systemProperties>
+					<!-- application path always starts with / -->
+					<path>${project-publish-name}</path>
+					<!-- optional if you want to add some extra directories into the classloader -->
+					<additionalClasspathDirs>
+						<additionalClasspathDir></additionalClasspathDir>
+					</additionalClasspathDirs>
+					<uriEncoding>${project.build.sourceEncoding}</uriEncoding>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<!-- <filters> <filter>conf/${env}.properties</filter> </filters> -->
+					<webResources>
+						<resource>
+							<!-- 都是相对于pom.xml的位置 -->
+							<directory>src/main/webapp/WEB-INF</directory>
+							<targetPath>WEB-INF</targetPath>
+						</resource>
+						<!-- <resource> <directory>src/main/resources/properties</directory> <filtering>true</filtering> <targetPath>WEB-INF/classes/properties</targetPath> </resource> -->
+					</webResources>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
