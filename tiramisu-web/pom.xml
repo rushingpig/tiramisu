@@ -6,16 +6,10 @@
 		<artifactId>tiramisu-parent</artifactId>
 		<version>1.0</version>
 	</parent>
-<<<<<<< HEAD
 	<artifactId>tiramisu-web</artifactId>
 	<packaging>war</packaging>
 	<name>tiramisu-web</name>
-=======
-	<artifactId>tiramisu-wx</artifactId>
-	<packaging>war</packaging>
-	<name>tiramisu-wx</name>
->>>>>>> 6a3531831279f93b94e7cf976da2b99900c27de3
-	<description>the project for weixin of xfshop</description>
+	<description>the project for admin web of xfshop</description>
 
 	<properties>
 		<springmvc.version>4.2.2.RELEASE</springmvc.version>
@@ -24,11 +18,8 @@
 		<tomcat.version>2.2</tomcat.version>
 		<project-publish-name>/</project-publish-name>
 		<velocity.version>1.7</velocity.version>
-<<<<<<< HEAD
 		<finalName>tiramisu</finalName>
-=======
 		<finalName>xfshop</finalName>
->>>>>>> 6a3531831279f93b94e7cf976da2b99900c27de3
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	
